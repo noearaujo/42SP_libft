@@ -12,17 +12,17 @@
 
 #include "libft.h"
 
-char    *ft_strdup(const char *s)
+char	*ft_strdup(const char *s)
 {
-    char *mem;
+	char	*mem;
 
-    if (!(mem = (char *)malloc(sizeof(char) * ft_strlen(s) + 1)))
-        return (NULL);
-    ft_strlcpy(mem, s, sizeof(char) * ft_strlen(s) + 1);
-    return (mem);
+	if (!(mem = (char *)malloc(sizeof(char) * ft_strlen(s) + 1)))
+		return (NULL);
+	ft_strlcpy(mem, s, sizeof(char) * ft_strlen(s) + 1);
+	return (mem);
 }
 
-int main(void)
+/* int main(void)
 {
     char *test;
     int i = 0;
@@ -33,4 +33,4 @@ int main(void)
     
     while (i < 1000)
         printf("%i\n", test[i++]);
-}
+} */

@@ -17,22 +17,22 @@
 
 size_t  ft_strlcat(char *dst, const char *src, size_t size)
 {
-    size_t dlen;
-    size_t slen;
-    size_t i;
+	size_t i;
+	size_t dst_size;
 
-    dlen = ft_strlen(dst);
-    slen = ft_strlen(src);
-    if (size <= dlen)
-        return (size + slen);
-    i = 0;
-    while (src[i] && i < slen - 1)
-    {
-        dst[dlen + i] = src[i];
-        i++;
-    }
-    dst[i] = '\0';
-    return ((slen - 1) + i);
+	dst_size = 0;
+	while (dst[dst_size] && dst_size < size)
+		dst_size++;
+	i = dst_size;
+	while (src[dst_size - i] && dst_size + 1 < size)
+	{
+		dst[dst_size] = src[dst_size - i];
+		dst_size++;
+	}
+
+	if (i < size)
+		dst[dst_size] = '\0';
+	return (i + ft_strlen(src));
 }
 
 /* int main(void)
@@ -40,7 +40,7 @@ size_t  ft_strlcat(char *dst, const char *src, size_t size)
     char dst[10] = "12";
     char src[10] = "ABCD";
     char dst2[10] = "12";
-    size_t size = 4;
+    size_t size = 3;
 
     printf("return: %li\n", strlcat(dst, src, size));
     printf("src: %s\ndst: %s\nsize: %li\n", src, dst, size);

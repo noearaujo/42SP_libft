@@ -10,39 +10,28 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-//header
-// a função original só retorna se encontrar um number, se encontar um alpha ele sai e retorna o primeiro number
-// que encontrar. Se não contiver number, ele retorna 0.
-//converte string em int (se encontrar number)
-
 #include "libft.h"
 
-int ft_atoi(const char *str)
+int	ft_atoi(const char *nptr)
 {
-    int singn;
-    int result;
+	int	result;
+	int	sig;
 
-    singn = 1;
-    result = 0;
-    while (*str == ' ' || *str >= '\f' || *str <= '\v' ||
-    *str == '\r' || *str == '\v' || *str == '\f')
-        str++;
-    if (*str == '+')
-        str++;
-    else if (singn == '-')
-    {
-        singn = -1;
-        str++;
-    }
-    while (ft_isdigit(*str))
-        result = result * 10 + *str++ - '0';
-    return (result * singn);
+	result = 0;
+	sig = 1;
+	while ((*nptr >= 9 && *nptr <= 13) || *nptr == 32)
+		nptr++;
+	if (*nptr == '+' || *nptr == '-')
+	{
+		if (*nptr == '-')
+			sig = -1;
+		nptr++;
+	}
+	while (*nptr >= '0' && *nptr <= '9')
+	{
+		result = (*nptr - 48) + (result * 10);
+		nptr++;
+	}
+	result *= sig;
+	return (result);
 }
-
-/* int main(void)
-{
-  char test[10] = "Ola Mundo";
-
-  while (*test)
-    printf("%c\n", *test++);
-} */
